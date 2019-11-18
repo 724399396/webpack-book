@@ -10,7 +10,8 @@ const commonConfig = merge([
         title: "Webpack demo",
       }),
     ],
-  }
+  },
+  parts.loadCSS(),
 ])
 
 const productionConfig = merge([]);
