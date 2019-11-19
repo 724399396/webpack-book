@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+      }
+    ]
+  ],
+  "env": {
+    "development": {
+      "plugins": [
+        "annotate-console-log"
+      ]
+    }
+  }
+}
