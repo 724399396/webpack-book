@@ -13,5 +13,6 @@
         "annotate-console-log"
       ]
     }
-  }
+  },
+  "plugins": ["@babel/plugin-syntax-dynamic-import"],
 }

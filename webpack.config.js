@@ -18,10 +18,23 @@ const commonConfig = merge([
       }),
     ],
   },
-  parts.loadJavaScript({ include: PATHS.app })
-])
+  parts.loadJavaScript({ include: PATHS.app }),
+  parts.setFreeVaraible("HELLO", "hello from config"),
+]);
 
 const productionConfig = merge([
+  {
+    output: {
+      chunkFilename: "[name].[chunkhash:4].js",
+      filename: "[name].[chunkhash:4].js"
+    },
+    recordsPath: path.join(__dirname, 'records.json'),
+    performance: {
+      hints: "warning", // "error" or false are valid too
+      maxEntrypointSize: 50000, // in bytes, default 250k
+      maxAssetSize: 450000, // in bytes
+    },
+  },
   parts.extractCSS({
     use: ['css-loader', parts.autoprefix()],
   }),
@@ -31,10 +44,39 @@ const productionConfig = merge([
   parts.loadImages({
     options: {
       limit: 15000,
-      name: "[name].[ext]"
+      name: "[name].[hash:4].[ext]"
     },
   }),
   parts.generateSourceMaps({ type: "source-map" }),
+  {
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            test: /[\\/]node_modules[\\/]/,
+            name: "vendor",
+            chunks: "initial",
+          }
+        }
+      },
+      runtimeChunk: {
+        name: "manifest",
+      },
+    },
+  },
+  parts.clean(),
+  parts.attachRevision(),
+  parts.minifyJavaScript(),
+  parts.minifyCSS({
+    options: {
+      discardComments: {
+        removeAll: true,
+      },
+      // Run cssnano in safe mode to avoid
+      // potentially unsafe transformations
+      safe: true,
+    },
+  }),
 ]);
 
 const developmentConfig = merge([
@@ -49,8 +91,8 @@ const developmentConfig = merge([
 module.exports = mode => {
   process.env.BABEL_ENV = mode;
   if (mode === "production") {
-    return merge(commonConfig, productionConfig, { mode })
+    return merge(commonConfig, productionConfig, { mode });
   }
 
-  return merge(commonConfig, developmentConfig, { mode })
+  return merge(commonConfig, developmentConfig, { mode });
 };
