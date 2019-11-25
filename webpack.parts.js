@@ -6,6 +6,7 @@ const GitRevisionPlugin = require("git-revision-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const cssnano = require("cssnano");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 exports.devServer = ({
     host,
@@ -137,3 +138,20 @@ exports.setFreeVaraible = (key, value) => {
     plugins: [new webpack.DefinePlugin(env)],
   };
 };
+
+exports.page = ({
+  path = "",
+  template = require.resolve(
+    "html-webpack-plugin/default_index.ejs"),
+  title,
+  entry,
+} = {}) => ({
+  entry,
+  plugins: [
+    new HtmlWebpackPlugin({
+      filename: `${path && path + "/"}index.html`,
+      template,
+      title,
+    }),
+  ]
+});
