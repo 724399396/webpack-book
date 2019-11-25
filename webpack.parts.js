@@ -145,6 +145,7 @@ exports.page = ({
     "html-webpack-plugin/default_index.ejs"),
   title,
   entry,
+  chunks,
 } = {}) => ({
   entry,
   plugins: [
@@ -152,6 +153,7 @@ exports.page = ({
       filename: `${path && path + "/"}index.html`,
       template,
       title,
+      chunks,
     }),
   ]
 });

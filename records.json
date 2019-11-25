@@ -19,7 +19,7 @@
         "byName": {},
         "bySource": {},
         "usedIds": [
-          0
+          1
         ]
       }
     }
@@ -86,7 +86,10 @@
       "node_modules/scheduler/index.js": 7,
       "node_modules/scheduler/cjs/scheduler.production.min.js": 8,
       "node_modules/babel-loader/lib/index.js!src/index.js 6d12cd29c9e29191ab9810f717896dd5": 9,
-      "node_modules/babel-loader/lib/index.js!src/lazy.js": 10
+      "node_modules/babel-loader/lib/index.js!src/lazy.js": 10,
+      "node_modules/babel-loader/lib/index.js!src/component.js": 9,
+      "node_modules/babel-loader/lib/index.js!src/another.js": 11,
+      "node_modules/babel-loader/lib/index.js!src/index.js 99d5d358ae55390c9d007e141b13e5fd": 12
     },
     "usedIds": {
       "0": 0,
@@ -99,23 +102,53 @@
       "7": 7,
       "8": 8,
       "9": 9,
-      "10": 10
+      "10": 10,
+      "11": 11,
+      "12": 12
     }
   },
   "chunks": {
     "byName": {
       "main": 0,
       "manifest": 1,
-      "vendor": 2
+      "vendor": 2,
+      "another": 4,
+      "app": 5
     },
     "bySource": {
       "0 node_modules/babel-loader/lib/index.js!src/component.js ./lazy": 3
     },
     "usedIds": [
-      0,
       1,
       2,
-      3
+      3,
+      4,
+      5
     ]
-  }
+  },
+  "html-webpack-plugin for \"another/index.html\"": [
+    {
+      "modules": {
+        "byIdentifier": {
+          "node_modules/html-webpack-plugin/lib/loader.js!node_modules/html-webpack-plugin/default_index.ejs": 0,
+          "node_modules/lodash/lodash.js": 1,
+          "node_modules/webpack/buildin/global.js": 2,
+          "node_modules/webpack/buildin/module.js": 3
+        },
+        "usedIds": {
+          "0": 0,
+          "1": 1,
+          "2": 2,
+          "3": 3
+        }
+      },
+      "chunks": {
+        "byName": {},
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ]
 }

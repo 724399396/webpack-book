@@ -98,6 +98,7 @@ module.exports = mode => {
             entry: {
                 app: PATHS.app,
             },
+            chunks: ["app", "manifest", "vendors~app"],
         }),
         parts.page({
             title: "Another demo",
@@ -105,11 +106,12 @@ module.exports = mode => {
             entry: {
                 another: path.join(PATHS.app, "another.js"),
             },
+            chunks: ["another", "manifest", "vendors~app"],
         }),
     ];
     const config = mode === "production" ? productionConfig : developmentConfig;
 
-    return pages.map(page => merge(commonConfig, developmentConfig, page, {
+    return merge([commonConfig, config, {
         mode
-    }));
+    }].concat(pages));
 };
